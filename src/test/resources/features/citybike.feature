@@ -2,12 +2,12 @@ Feature: validating exact location of city bikes around the world
 This feature demonstrates for every valid request returns the location and corresponding latitude,longitude
 For every invalid request returns error response
 
-Scenario Outline: Verify the exact location of city 
+Scenario Outline: Validate the exact location of city 
   Given I access the city bikes api service  
-   When I send GET request for "<path>" 
-   Then I validate cycle brand "<company>" city "<cityName>" belongs to Country "<countryName>" 
-    And response should contain the <latitude> and <longitude>
-    And I validate the response with status code <httpStatusCode>
+  When I send GET request for "<path>" 
+  Then I validate cycle brand "<company>" city "<cityName>" belongs to Country "<countryName>" 
+  And response should contain the <latitude> and <longitude>
+  And I validate the response with status code <httpStatusCode>
 
   Examples: 
     | path                | company       | cityName  | countryName | latitude | longitude | httpStatusCode | 

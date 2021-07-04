@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class FileUtils {
+public class ApiUtils {
 
 	private static Properties props;
 	private static final String BASE_URI = "base_Url";

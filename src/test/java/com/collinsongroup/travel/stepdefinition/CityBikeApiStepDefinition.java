@@ -1,7 +1,7 @@
 package com.collinsongroup.travel.stepdefinition;
 
 import com.collinsongroup.travel.response.model.CityBikeApiResponse;
-import com.collinsongroup.travel.util.FileUtils;
+import com.collinsongroup.travel.util.ApiUtils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -21,13 +21,13 @@ public class CityBikeApiStepDefinition {
 
 	@Given("I access the city bikes api service")
 	public void iAccessTheApiService() {
-		url = FileUtils.getBaseUri();
+		url = ApiUtils.getBaseUri();
 		assertNotNull("Api url is null", url);
 	}
 
 	@When("I send GET request for {string}")
 	public void iSendGetRequestForPath(String path) {
-		Response response = RestAssured.given().contentType(ContentType.JSON).when().get(url + path);
+		Response response = RestAssured.when().get(url + path);
 		if (ContentType.JSON.toString().equalsIgnoreCase(response.getContentType())) {
 			apiResponse = response.getBody().as(CityBikeApiResponse.class);
 		}
@@ -52,10 +52,5 @@ public class CityBikeApiStepDefinition {
 	@And("I validate the response with status code {int}")
 	public void iValidateHttpResonseStatusCode(int httpstatuscode) {
 		assertEquals("Http response status code didn't match", httpstatuscode, httpResponseStatusCode);
-	}
-
-	@And("I validate the {string}")
-	public void iValidateTheErrorMessage(String errormessage) {
-		System.out.println("Hello");
 	}
 }
